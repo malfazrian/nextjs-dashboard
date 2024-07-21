@@ -33,12 +33,23 @@ export default async function CustomersTable({
                       <p>{customer.name}</p>
                     </div>
                     <p className="text-sm text-gray-500">{customer.email}</p>
-                    <p className="text-sm text-gray-500">{customer.total_invoices}</p>
-                    <p className="text-sm text-gray-500">{customer.total_pending}</p>
-                    <p className="text-sm text-gray-500">{customer.total_paid}</p>
                   </div>
                 </div>
                 <div className="flex w-full items-center justify-between pt-4">
+                  <div className='w-full'>
+                    <div className='flex w-full gap-2'>
+                      <p>Total Invoices:</p>
+                      <p>{customer.total_invoices}</p>
+                    </div>
+                    <div className='flex w-full gap-2'>
+                      <p>Total Pending:</p>
+                      <p>{customer.total_pending}</p>
+                    </div>
+                    <div className='flex w-full gap-2'>
+                      <p>Total Paid:</p>
+                      <p>{customer.total_paid}</p>
+                    </div>
+                  </div>
                   <div className="flex justify-end gap-2">
                     <UpdateCustomer id={customer.id} />
                     <DeleteCustomer id={customer.id} />
