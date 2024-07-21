@@ -52,7 +52,6 @@ export type CustomerState = {
   errors?: {
     name?: string[];
     email?: string[];
-    image?: string[];
   };
   message?: string | null;
 };
