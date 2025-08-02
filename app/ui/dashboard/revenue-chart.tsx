@@ -3,16 +3,9 @@ import { CalendarIcon } from '@heroicons/react/24/outline';
 import { lusitana } from '@/app/ui/fonts';
 import { fetchRevenue } from '@/app/lib/data';
 
-// This component is representational only.
-// For data visualization UI, check out:
-// https://www.tremor.so/
-// https://www.chartjs.org/
-// https://airbnb.io/visx/
-
 export default async function RevenueChart() {
   const revenue = await fetchRevenue();
   const chartHeight = 350;
-  //NOTE: Uncomment this code in Chapter 7
 
   const { yAxisLabels, topLabel } = generateYAxis(revenue);
 
@@ -20,13 +13,28 @@ export default async function RevenueChart() {
     return <p className="mt-4 text-gray-400">No data available.</p>;
   }
 
+  // Urutan bulan yang benar
+  const monthOrder = [
+    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+  ];
+
+  // Sort revenue sesuai urutan bulan
+  const sortedRevenue = [...revenue].sort((a, b) => {
+    const aIndex = monthOrder.findIndex((m) =>
+      m.toLowerCase().startsWith(a.month.toLowerCase())
+    );
+    const bIndex = monthOrder.findIndex((m) =>
+      m.toLowerCase().startsWith(b.month.toLowerCase())
+    );
+    return aIndex - bIndex;
+  });
+
   return (
     <div className="w-full md:col-span-4">
       <h2 className={`${lusitana.className} mb-4 text-xl md:text-2xl`}>
         Recent Revenue
       </h2>
-      {/* NOTE: Uncomment this code in Chapter 7 */}
-
       <div className="rounded-xl bg-gray-50 p-4">
         <div className="sm:grid-cols-13 mt-0 grid grid-cols-12 items-end gap-2 rounded-md bg-white p-4 md:gap-4">
           <div
@@ -38,7 +46,7 @@ export default async function RevenueChart() {
             ))}
           </div>
 
-          {revenue.map((month) => (
+          {sortedRevenue.map((month) => (
             <div key={month.month} className="flex flex-col items-center gap-2">
               <div
                 className="w-full rounded-md bg-blue-300"

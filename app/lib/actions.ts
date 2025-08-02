@@ -68,7 +68,7 @@ export async function createInvoice(prevState: State, formData: FormData) {
   if (!validatedFields.success) {
     return {
       errors: validatedFields.error.flatten().fieldErrors,
-      message: 'Missing Fields. Failed to Create Invoice.',
+      message: 'Missing Fields. Failed to Create Loan.',
     };
   }
  
@@ -87,13 +87,13 @@ export async function createInvoice(prevState: State, formData: FormData) {
     // If a database error occurs, return a more specific error.
     console.log(error)
     return {
-      message: 'Database Error: Failed to Create Invoice.',
+      message: 'Database Error: Failed to Create Loan.',
     };
   }
   
-  // Revalidate the cache for the invoices page and redirect the user.
-  revalidatePath('/dashboard/invoices');
-  redirect('/dashboard/invoices');
+  // Revalidate the cache for the loans page and redirect the user.
+  revalidatePath('/dashboard/loans');
+  redirect('/dashboard/loans');
 }
 
 export async function updateInvoice(
@@ -110,7 +110,7 @@ export async function updateInvoice(
   if (!validatedFields.success) {
     return {
       errors: validatedFields.error.flatten().fieldErrors,
-      message: 'Missing Fields. Failed to Update Invoice.',
+      message: 'Missing Fields. Failed to Update Loan.',
     };
   }
  
@@ -124,20 +124,20 @@ export async function updateInvoice(
       WHERE id = ${id}
     `;
   } catch (error) {
-    return { message: 'Database Error: Failed to Update Invoice.' };
+    return { message: 'Database Error: Failed to Update Loan.' };
   }
  
-  revalidatePath('/dashboard/invoices');
-  redirect('/dashboard/invoices');
+  revalidatePath('/dashboard/loans');
+  redirect('/dashboard/loans');
 }
 
 export async function deleteInvoice(id: string) {
   try {
     await sql`DELETE FROM invoices WHERE id = ${id}`;
-    revalidatePath('/dashboard/invoices');
-    return { message: 'Deleted Invoice.' };
+    revalidatePath('/dashboard/loans');
+    return { message: 'Deleted Loan.' };
   } catch (error) {
-    return { message: 'Database Error: Failed to Delete Invoice.' };
+    return { message: 'Database Error: Failed to Delete Loan.' };
   }
 }
 
@@ -194,8 +194,8 @@ export async function createCustomer(prevState: CustomerState, formData: FormDat
   }
   
   // Revalidate the cache for the invoices page and redirect the user.
-  revalidatePath('/dashboard/customers');
-  redirect('/dashboard/customers');
+  revalidatePath('/dashboard/members');
+  redirect('/dashboard/members');
 }
 
 export async function updateCustomer(
@@ -214,7 +214,7 @@ export async function updateCustomer(
     console.log('Validation failed:', validatedFields.error.flatten().fieldErrors);
     return {
       errors: validatedFields.error.flatten().fieldErrors,
-      message: 'Missing Fields. Failed to Update Customer.',
+      message: 'Missing Fields. Failed to Update Member.',
     };
   }
 
@@ -228,19 +228,19 @@ export async function updateCustomer(
     `;
   } catch (error) {
     console.error('Database error:', error);
-    return { message: 'Database Error: Failed to Update Customer.' };
+    return { message: 'Database Error: Failed to Update Member.' };
   }
 
-  revalidatePath('/dashboard/customers');
-  redirect('/dashboard/customers');
+  revalidatePath('/dashboard/members');
+  redirect('/dashboard/members');
 }
 
 export async function deleteCustomer(id: string) {
   try {
     await sql`DELETE FROM customers WHERE id = ${id}`;
-    revalidatePath('/dashboard/customers');
-    return { message: 'Deleted Customer.' };
+    revalidatePath('/dashboard/members');
+    return { message: 'Deleted Member.' };
   } catch (error) {
-    return { message: 'Database Error: Failed to Delete Customer.' };
+    return { message: 'Database Error: Failed to Delete Member.' };
   }
 }

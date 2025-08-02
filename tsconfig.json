@@ -21,7 +21,12 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./*"]
-    }
+    },
+    "typeRoots": [
+      "./node_modules/@types",
+      "./app/types"
+    ],
+    
   },
   "include": [
     "next-env.d.ts",

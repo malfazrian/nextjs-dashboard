@@ -11,7 +11,7 @@ const iconMap = {
   collected: BanknotesIcon,
   customers: UserGroupIcon,
   pending: ClockIcon,
-  invoices: InboxIcon,
+  invoices: BanknotesIcon,
 };
 
 export default async function CardWrapper() {
@@ -25,11 +25,11 @@ export default async function CardWrapper() {
     <>
       {/* NOTE: Uncomment this code in Chapter 9 */}
 
-      <Card title="Collected" value={totalPaidInvoices} type="collected" />
-      <Card title="Pending" value={totalPendingInvoices} type="pending" />
-      <Card title="Total Invoices" value={numberOfInvoices} type="invoices" />
+      <Card title="Balance" value={totalPaidInvoices} type="collected" />
+      <Card title="Outstanding Loans" value={totalPendingInvoices} type="pending" />
+      <Card title="Investment" value={numberOfInvoices} type="invoices" />
       <Card
-        title="Total Customers"
+        title="Total Members"
         value={numberOfCustomers}
         type="customers"
       />
