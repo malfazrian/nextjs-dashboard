@@ -27,7 +27,7 @@ export default async function CardWrapper() {
 
       <Card title="Balance" value={totalPaidInvoices} type="collected" />
       <Card title="Outstanding Loans" value={totalPendingInvoices} type="pending" />
-      <Card title="Investment" value={numberOfInvoices} type="invoices" />
+      <Card title="Total Loans" value={numberOfInvoices} type="invoices" />
       <Card
         title="Total Members"
         value={numberOfCustomers}
