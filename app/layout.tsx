@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     template: '%s | KSUD Dashboard',
     default: 'KSUD Dashboard',
   },
-  description: 'The official Next.js Learn Dashboard built with App Router.',
+  description: 'The KSU Desnety Dashboard.',
 };
 
 export default function RootLayout({

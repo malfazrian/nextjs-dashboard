@@ -5,10 +5,10 @@ import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Edit Invoice',
+  title: 'Edit Loan',
 };
  
-export default async function Page({ params }: { params: { id: string } }) {
+export default async function Page({ params }: any) {
   const id = params.id;
   const [invoice, customers] = await Promise.all([
     fetchInvoiceById(id),
@@ -24,7 +24,7 @@ export default async function Page({ params }: { params: { id: string } }) {
         breadcrumbs={[
           { label: 'Loans', href: '/dashboard/loans' },
           {
-            label: 'Edit Invoice',
+            label: 'Edit Loan',
             href: `/dashboard/loans/${id}/edit`,
             active: true,
           },
